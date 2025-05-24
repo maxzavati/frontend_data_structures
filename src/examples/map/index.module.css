@@ -1,0 +1,26 @@
+.root {
+  max-width: 500px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3.2rem;
+}
+
+.list {
+  padding: 1.6rem;
+  border: 1px solid var(--grey6);
+}
+
+.listItem {
+  display: flex;
+  gap: 0.8rem;
+  padding: 1.6rem;
+  border-bottom: 1px solid var(--grey6);
+}
+
+.highlightedMessage span {
+  color: var(--success);
+}
