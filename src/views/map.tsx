@@ -4,5 +4,5 @@ import { generateMessages } from '../utils';
 export function MapView() {
   const messages = generateMessages(10000);
 
-  return <MapExample messages={messages} />;
+  return <MapExample data={messages} />;
 }

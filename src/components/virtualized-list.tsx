@@ -1,16 +1,17 @@
 import { useRef, useState, type ReactNode } from 'react';
-import type { Message } from '../types';
 
-export function VirtualizedList({
+export function VirtualizedList<T>({
   items,
   height,
   itemHeight,
   renderItem,
+  getKey,
 }: {
-  items: Message[];
+  items: T[];
   height: number;
   itemHeight: number;
-  renderItem: (item: Message, index: number) => ReactNode;
+  renderItem: (item: T, index: number) => ReactNode;
+  getKey: (item: T) => string | number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollTop, setScrollTop] = useState(0);
@@ -40,7 +41,7 @@ export function VirtualizedList({
       <div style={{ height: `${totalHeight}px`, paddingRight: '1.6rem' }}>
         <div style={{ transform: `translateY(${offsetY}px)` }}>
           {items.slice(startIndex, endIndex + 1).map((item, index) => (
-            <div key={item.id} style={{ height: `${itemHeight}px` }}>
+            <div key={getKey(item)} style={{ height: `${itemHeight}px` }}>
               {renderItem(item, startIndex + index)}
             </div>
           ))}
