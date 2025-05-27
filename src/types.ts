@@ -1,5 +1,4 @@
-export interface Message {
+export interface Item {
   id: string;
   text: string;
-  userName: string;
 }

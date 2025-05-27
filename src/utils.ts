@@ -1,22 +1,11 @@
-import type { Message } from './types';
+import type { Item } from './types';
 
-export function generateMessages(count: number): Message[] {
-  const names = [
-    'Alice',
-    'Bob',
-    'Charlie',
-    'Diana',
-    'Evan',
-    'Fiona',
-    'George',
-    'Hannah',
-  ];
+export function generateItems(count: number): Item[] {
   const messages = [];
   for (let i = 0; i < count; i++) {
     messages.push({
       id: `msg-${i}`,
-      text: `This is message #${i}`,
-      userName: names[Math.floor(Math.random() * names.length)],
+      text: `Item #${i}`,
     });
   }
   return messages;

@@ -1,5 +1,5 @@
-import { MapView } from '../views/map';
+import { MapExample } from '../examples/map';
 
 export default function MapRoute() {
-  return <MapView />;
+  return <MapExample />;
 }
