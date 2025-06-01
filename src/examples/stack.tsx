@@ -27,22 +27,28 @@ function reducer(state: State, action: Action): State {
         historyStack: newHistoryStack,
       };
     }
+
     case 'undo': {
       const newHistoryStack = [...state.historyStack];
       const previousItem = newHistoryStack.length
         ? newHistoryStack.pop()
         : null;
 
-      const newItems = [...state.items];
-      if (previousItem) {
-        newItems.push(previousItem);
+      if (previousItem && previousItem.index) {
+        const newItems = [
+          ...state.items.slice(0, previousItem.index),
+          previousItem,
+          ...state.items.slice(previousItem.index),
+        ];
+        return {
+          items: newItems,
+          historyStack: newHistoryStack,
+        };
+      } else {
+        return state;
       }
-
-      return {
-        items: newItems,
-        historyStack: newHistoryStack,
-      };
     }
+
     default:
       throw new Error('Unknown action');
   }
@@ -70,10 +76,19 @@ export function StackExample() {
         Undo Last Action
       </button>
       <ul>
-        {state.items.map((item) => (
+        {state.items.map((item, index) => (
           <li key={item.id} className='listItem rowSpaceBetween'>
             {item.text}{' '}
-            <button onClick={() => onRemoveItem(item)}>Delete</button>
+            <button
+              onClick={() =>
+                onRemoveItem({
+                  ...item,
+                  index,
+                })
+              }
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
