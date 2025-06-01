@@ -98,7 +98,7 @@ export function MapExample() {
     <div
       className='rootBox'
       style={{
-        maxWidth: 500,
+        maxWidth: 400,
       }}
     >
       <div className='box'>
@@ -109,8 +109,12 @@ export function MapExample() {
           onChange={(value) => setItemId(value)}
         />
         <div className='row'>
-          <button onClick={getItem}>Get Item</button>
-          <button onClick={deleteItem}>Delete Item</button>
+          <button onClick={getItem} disabled={!itemId}>
+            Get Item
+          </button>
+          <button onClick={deleteItem} disabled={!itemId}>
+            Delete Item
+          </button>
         </div>
       </div>
 
@@ -120,7 +124,9 @@ export function MapExample() {
           value={itemValue}
           onChange={(value) => setItemValue(value)}
         />
-        <button onClick={setItem}>Set Item</button>
+        <button onClick={setItem} disabled={!itemValue}>
+          Set Item
+        </button>
       </div>
 
       <div className='box'>

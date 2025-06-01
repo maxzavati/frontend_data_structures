@@ -21,7 +21,7 @@ export function SetExample() {
     <div
       className='rootBox'
       style={{
-        maxWidth: 500,
+        maxWidth: 400,
       }}
     >
       <div className='box'>

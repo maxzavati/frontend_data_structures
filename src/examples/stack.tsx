@@ -69,7 +69,7 @@ export function StackExample() {
     <div
       className='box'
       style={{
-        maxWidth: 300,
+        maxWidth: 400,
       }}
     >
       <button onClick={onUndo} disabled={!state.historyStack.length}>

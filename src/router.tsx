@@ -3,6 +3,7 @@ import MainLayout from './components/layout';
 import MapRoute from './routes/map';
 import SetRoute from './routes/set';
 import StackRoute from './routes/stack';
+import QueueRoute from './routes/queue';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/stack',
         element: <StackRoute />,
+      },
+      {
+        path: '/queue',
+        element: <QueueRoute />,
       },
     ],
   },

@@ -70,6 +70,11 @@ a {
 }
 
 ul,
+ol {
+  list-style: none;
+}
+
+ul,
 li {
   color: inherit;
   font-family: inherit;
