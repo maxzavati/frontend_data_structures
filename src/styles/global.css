@@ -53,6 +53,9 @@ button {
   color: var(--white);
   background-color: var(--primary);
 }
+button:disabled {
+  opacity: 0.6;
+}
 
 input,
 textarea {
@@ -90,6 +93,13 @@ li {
 .row {
   display: flex;
   align-items: center;
+  gap: 1rem;
+}
+
+.rowSpaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
 }
 

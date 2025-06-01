@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from './components/layout';
 import MapRoute from './routes/map';
 import SetRoute from './routes/set';
+import StackRoute from './routes/stack';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: '/set',
         element: <SetRoute />,
+      },
+      {
+        path: '/stack',
+        element: <StackRoute />,
       },
     ],
   },

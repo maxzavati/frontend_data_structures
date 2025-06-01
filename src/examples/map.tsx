@@ -4,9 +4,9 @@ import { generateItems } from '../utils';
 import { Input } from '../components/ui/input';
 import { VirtualizedList } from '../components/virtualized-list';
 
-export function MapExample() {
-  const data = generateItems(10000);
+const data = generateItems(10000);
 
+export function MapExample() {
   const [items, setItems] = useState<Map<string, Item | null>>(
     () => new Map(data.map((message, index) => [`msg-${index}`, message]))
   );
