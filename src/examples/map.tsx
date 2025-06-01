@@ -8,7 +8,7 @@ const data = generateItems(10000);
 
 export function MapExample() {
   const [items, setItems] = useState<Map<string, Item | null>>(
-    () => new Map(data.map((message, index) => [`msg-${index}`, message]))
+    () => new Map(data.map((message, index) => [`item-${index + 1}`, message]))
   );
 
   const [itemValue, setItemValue] = useState('');
@@ -29,8 +29,8 @@ export function MapExample() {
       setItems((prev) => {
         const newMap = new Map(prev);
         const newMapSize = newMap.size + 1;
-        newMap.set(`msg-${newMapSize}`, {
-          id: `msg-${newMapSize}`,
+        newMap.set(`item-${newMapSize}`, {
+          id: `item-${newMapSize}`,
           text: `${itemValue} #${newMapSize}`,
         });
         return newMap;
@@ -43,7 +43,7 @@ export function MapExample() {
   };
 
   const getItem = () => {
-    const item = items.get(`msg-${itemId}`);
+    const item = items.get(`item-${itemId}`);
 
     if (item) {
       setNotificationMessage({
@@ -63,10 +63,10 @@ export function MapExample() {
     if (itemId) {
       setItems((prev) => {
         const newMap = new Map(prev);
-        const hasItem = newMap.has(`msg-${itemId}`);
+        const hasItem = newMap.has(`item-${itemId}`);
 
         if (hasItem) {
-          newMap.delete(`msg-${itemId}`);
+          newMap.delete(`item-${itemId}`);
 
           setNotificationMessage({
             text: `Last deleted item id: #${itemId}`,
@@ -102,7 +102,7 @@ export function MapExample() {
       }}
     >
       <div className='box'>
-        <p>Enter id (number from 0 to {items.size})</p>
+        <p>Enter id (number from 1 to {items.size})</p>
         <Input
           type='number'
           value={itemId}

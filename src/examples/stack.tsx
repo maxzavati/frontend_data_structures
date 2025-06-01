@@ -34,7 +34,7 @@ function reducer(state: State, action: Action): State {
         ? newHistoryStack.pop()
         : null;
 
-      if (previousItem && previousItem.index) {
+      if (previousItem && previousItem.index !== undefined) {
         const newItems = [
           ...state.items.slice(0, previousItem.index),
           previousItem,
@@ -80,6 +80,7 @@ export function StackExample() {
           <li key={item.id} className='listItem rowSpaceBetween'>
             {item.text}{' '}
             <button
+              className='deleteButton'
               onClick={() =>
                 onRemoveItem({
                   ...item,

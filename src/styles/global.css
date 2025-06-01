@@ -120,6 +120,10 @@ li {
   border-bottom: 1px solid var(--grey6);
 }
 
+.deleteButton {
+  background-color: var(--error);
+}
+
 *::-webkit-scrollbar-track {
   border-radius: 3px;
   background-color: var(--grey2);
