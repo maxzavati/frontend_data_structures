@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { Item } from '../types';
 import { generateItems } from '../utils';
-import { Input } from '../components/ui/input';
 import { VirtualizedList } from '../components/virtualized-list';
 
 const data = generateItems(10000);
@@ -103,10 +102,11 @@ export function MapExample() {
     >
       <div className='box'>
         <p>Enter id (number from 1 to {items.size})</p>
-        <Input
-          type='number'
+        <input
+          className='input'
+          type='text'
           value={itemId}
-          onChange={(value) => setItemId(value)}
+          onChange={(event) => setItemId(event.target.value)}
         />
         <div className='row'>
           <button onClick={getItem} disabled={!itemId}>
@@ -119,10 +119,11 @@ export function MapExample() {
       </div>
 
       <div className='box'>
-        <Input
+        <input
+          className='input'
           type='text'
-          value={itemValue}
-          onChange={(value) => setItemValue(value)}
+          value={itemId}
+          onChange={(event) => setItemValue(event.target.value)}
         />
         <button onClick={setItem} disabled={!itemValue}>
           Set Item

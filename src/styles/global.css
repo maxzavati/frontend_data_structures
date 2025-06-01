@@ -30,6 +30,11 @@ body {
   background-color: var(--grey1);
   padding: 1.6rem;
 }
+@media (min-width: 768px) {
+  body {
+    padding: 8rem;
+  }
+}
 
 p,
 a,
@@ -80,6 +85,22 @@ li {
   font-family: inherit;
 }
 
+*::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background-color: var(--grey2);
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: var(--grey2);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: var(--grey10);
+}
+
 /* Utils */
 .rootBox {
   display: flex;
@@ -108,6 +129,16 @@ li {
   gap: 1rem;
 }
 
+.input {
+  width: 100%;
+  height: 32px;
+  padding: 0 0.6rem;
+  color: var(--text);
+  background-color: transparent;
+  border: 1px solid var(--grey6);
+  background-color: var(--grey2);
+}
+
 .list {
   padding: 1.6rem;
   border: 1px solid var(--grey6);
@@ -122,28 +153,6 @@ li {
 
 .deleteButton {
   background-color: var(--error);
-}
-
-*::-webkit-scrollbar-track {
-  border-radius: 3px;
-  background-color: var(--grey2);
-}
-
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-  background-color: var(--grey2);
-}
-
-*::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  background-color: var(--grey10);
-}
-
-@media (min-width: 768px) {
-  body {
-    padding: 8rem;
-  }
 }
 
 .blink {

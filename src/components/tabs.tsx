@@ -19,16 +19,42 @@ export function Tabs({ children }: Props) {
 }
 
 function Trigger({ value, children }: { value: string; children: ReactNode }) {
-  const { setTabValue } = useContext(TabsContext);
+  const { tabValue, setTabValue } = useContext(TabsContext);
+  const isActive = value == tabValue;
   return (
-    <li>
-      <button onClick={() => setTabValue(value)}>{children}</button>
+    <li
+      style={{
+        width: '100%',
+      }}
+    >
+      <button
+        onClick={() => setTabValue(value)}
+        style={{
+          width: '100%',
+          background: 'none',
+          opacity: isActive ? 1 : 0.5,
+        }}
+      >
+        {children}
+      </button>
     </li>
   );
 }
 
 function List({ children }: { children: ReactNode }) {
-  return <ul>{children}</ul>;
+  return (
+    <ul
+      style={{
+        display: 'flex',
+        gap: '2.4rem',
+        paddingBottom: '1.6rem',
+        marginBottom: '3.2rem',
+        borderBottom: '1px solid var(--grey6)',
+      }}
+    >
+      {children}
+    </ul>
+  );
 }
 
 function Content({ value, children }: { value: string; children: ReactNode }) {
