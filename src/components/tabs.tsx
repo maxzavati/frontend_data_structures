@@ -2,6 +2,7 @@ import { createContext, useContext, useState, type ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
+  defaultValue?: string;
 }
 
 const TabsContext = createContext({
@@ -9,8 +10,8 @@ const TabsContext = createContext({
   setTabValue: (_: string | ((prevState: string) => string)) => {},
 });
 
-export function Tabs({ children }: Props) {
-  const [tabValue, setTabValue] = useState('');
+export function Tabs({ children, defaultValue = '' }: Props) {
+  const [tabValue, setTabValue] = useState(defaultValue);
   return (
     <TabsContext.Provider value={{ tabValue, setTabValue }}>
       {children}
@@ -46,7 +47,7 @@ function List({ children }: { children: ReactNode }) {
     <ul
       style={{
         display: 'flex',
-        gap: '2.4rem',
+        gap: '1rem',
         paddingBottom: '1.6rem',
         marginBottom: '3.2rem',
         borderBottom: '1px solid var(--grey6)',

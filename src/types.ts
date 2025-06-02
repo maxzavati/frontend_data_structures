@@ -3,3 +3,9 @@ export interface Item {
   text: string;
   index?: number;
 }
+
+export interface MenuItem {
+  text: string;
+  href?: string;
+  children?: MenuItem[];
+}

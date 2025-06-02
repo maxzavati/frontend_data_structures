@@ -8,7 +8,7 @@ import { TreeExample } from './examples/tree';
 function App() {
   return (
     <main>
-      <Tabs>
+      <Tabs defaultValue='map'>
         <Tabs.List>
           <Tabs.Trigger value='map'>Map</Tabs.Trigger>
           <Tabs.Trigger value='set'>Set</Tabs.Trigger>
