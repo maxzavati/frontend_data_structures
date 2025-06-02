@@ -5,7 +5,7 @@ export interface Item {
 }
 
 export interface MenuItem {
-  text: string;
-  href?: string;
-  children?: MenuItem[];
+  label: string;
+  url?: string;
+  subItems?: MenuItem[];
 }

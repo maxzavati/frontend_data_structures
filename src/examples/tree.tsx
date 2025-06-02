@@ -1,33 +1,51 @@
 import { DropdownMenu } from '../components/menu';
 import type { MenuItem } from '../types';
 
-const menuItems = [
+const navigation = [
   {
-    text: 'Item 1',
-    children: [
+    label: 'Dashboard',
+    subItems: [
       {
-        text: 'Item 1 1',
-        href: '#',
+        label: 'Overview',
+        url: '#',
       },
       {
-        text: 'Item 1 2',
-        href: '#',
+        label: 'Stats',
+        url: '#',
       },
     ],
   },
   {
-    text: 'Item 2',
-    href: '#',
+    label: 'Profile',
+    url: '#',
   },
   {
-    text: 'Item 3',
-    children: [
+    label: 'Settings',
+    subItems: [
       {
-        text: 'Item 3 1',
-        children: [
+        label: 'Preferences',
+        url: '#',
+      },
+      {
+        label: 'Security',
+        subItems: [
           {
-            text: 'Item 3 1 1',
-            href: '#',
+            label: 'Passwords',
+            url: '#',
+          },
+          {
+            label: 'Advanced Settings',
+            url: '#',
+            subItems: [
+              {
+                label: 'Encryption',
+                url: '#',
+              },
+              {
+                label: 'Permissions',
+                url: '#',
+              },
+            ],
           },
         ],
       },
@@ -36,16 +54,16 @@ const menuItems = [
 ];
 
 const Item = ({ item }: { item: MenuItem }) => {
-  if (!item.children || item.children.length === 0) {
-    return <DropdownMenu.Item>{item.text}</DropdownMenu.Item>;
+  if (!item.subItems || item.subItems.length === 0) {
+    return <DropdownMenu.Item>{item.label}</DropdownMenu.Item>;
   }
 
   return (
     <DropdownMenu>
-      <DropdownMenu.Trigger>{item.text}</DropdownMenu.Trigger>
+      <DropdownMenu.Trigger>{item.label}</DropdownMenu.Trigger>
       <DropdownMenu.Sub>
-        {item.children.map((child, index) => (
-          <Item key={index} item={child} />
+        {item.subItems.map((subItem, index) => (
+          <Item key={index} item={subItem} />
         ))}
       </DropdownMenu.Sub>
     </DropdownMenu>
@@ -61,7 +79,7 @@ export function TreeExample() {
       }}
     >
       <div className='box'>
-        {menuItems.map((item, index) => (
+        {navigation.map((item, index) => (
           <Item key={index} item={item} />
         ))}
       </div>
