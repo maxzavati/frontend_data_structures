@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { Item } from '../types';
 import { generateItems } from '../utils';
-import { VirtualizedList } from '../components/virtualized-list';
 
 const data = generateItems(10000);
 
@@ -10,9 +9,7 @@ export function MapExample() {
     () => new Map(data.map((message, index) => [`item-${index + 1}`, message]))
   );
 
-  const [itemValue, setItemValue] = useState('');
   const [itemId, setItemId] = useState('');
-
   const [highlightedSize, setHighlightedSize] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState<{
     text: string;
@@ -22,26 +19,22 @@ export function MapExample() {
     type: 'success',
   });
 
-  // ----- Map manipulation -----
-  const setItem = () => {
-    if (itemValue) {
-      setItems((prev) => {
-        const newMap = new Map(prev);
-        const newMapSize = newMap.size + 1;
-        newMap.set(`item-${newMapSize}`, {
-          id: `item-${newMapSize}`,
-          text: `${itemValue} #${newMapSize}`,
-        });
-        return newMap;
+  // ----- Map manipulations -----
+  const handleSetItem = () => {
+    setItems((prev) => {
+      const newMap = new Map(prev);
+      const newMapSize = newMap.size + 1;
+      newMap.set(`item-${newMapSize}`, {
+        id: `item-${newMapSize}`,
+        text: `Item #${newMapSize}`,
       });
+      return newMap;
+    });
 
-      // Cleanup and highlight
-      setItemValue('');
-      highlight();
-    }
+    highlight();
   };
 
-  const getItem = () => {
+  const handleGetItem = () => {
     const item = items.get(`item-${itemId}`);
 
     if (item) {
@@ -58,7 +51,7 @@ export function MapExample() {
     }
   };
 
-  const deleteItem = () => {
+  const handleDeleteItem = () => {
     if (itemId) {
       setItems((prev) => {
         const newMap = new Map(prev);
@@ -97,7 +90,7 @@ export function MapExample() {
     <div
       className='rootBox'
       style={{
-        maxWidth: 400,
+        maxWidth: 450,
       }}
     >
       <div className='box'>
@@ -109,30 +102,14 @@ export function MapExample() {
           onChange={(event) => setItemId(event.target.value)}
         />
         <div className='row'>
-          <button onClick={getItem} disabled={!itemId}>
+          <button onClick={handleSetItem}>Set Item</button>
+          <button onClick={handleGetItem} disabled={!itemId}>
             Get Item
           </button>
-          <button onClick={deleteItem} disabled={!itemId}>
+          <button onClick={handleDeleteItem} disabled={!itemId}>
             Delete Item
           </button>
         </div>
-      </div>
-
-      <div className='box'>
-        <input
-          className='input'
-          type='text'
-          value={itemId}
-          onChange={(event) => setItemValue(event.target.value)}
-        />
-        <button onClick={setItem} disabled={!itemValue}>
-          Set Item
-        </button>
-      </div>
-
-      <div className='box'>
-        <div>Notifications</div>
-        <p className={notificationMessage.type}>{notificationMessage.text}</p>
       </div>
 
       <div className='box'>
@@ -141,22 +118,8 @@ export function MapExample() {
           <span className={highlightedSize ? 'blink' : ''}>{items.size}</span>{' '}
           items
         </p>
-      </div>
-
-      <div className='list'>
-        <VirtualizedList<Item>
-          items={Array.from(items.values()).filter(
-            (item): item is Item => item !== null
-          )}
-          height={500}
-          itemHeight={50}
-          getKey={(item) => item.id}
-          renderItem={(item) => (
-            <div className='listItem'>
-              <span>{item.text}</span>
-            </div>
-          )}
-        />
+        <div>Notifications:</div>
+        <p className={notificationMessage.type}>{notificationMessage.text}</p>
       </div>
     </div>
   );

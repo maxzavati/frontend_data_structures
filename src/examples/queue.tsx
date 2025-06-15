@@ -29,7 +29,7 @@ export function QueueExample() {
     <div
       className='rootBox'
       style={{
-        maxWidth: 400,
+        maxWidth: 450,
       }}
     >
       <div className='box'>
